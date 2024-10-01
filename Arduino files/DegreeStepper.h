@@ -9,13 +9,13 @@ class DegreeStepper : public AccelStepper{
     float stepsPerDegree;
 
   public:
-    DegreeStepper(uint8_t stepPin, uint8_t dirPin, uint8_t enPin, uint8_t microsteppinFactor);
+    DegreeStepper(uint8_t stepPin, uint8_t dirPin, uint8_t enPin);
 
     void enable();
 
     void disable();
     
-    void setMicrosteppingFactor(uint8_t microsteppingFactor);
+    void setMicrosteppingFactor(float microsteppingFactor);
 
     float currentPositionInDegree();
 
