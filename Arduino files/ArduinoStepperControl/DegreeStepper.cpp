@@ -17,7 +17,6 @@ void DegreeStepper::disable(){
     digitalWrite(enPin, HIGH);
 }
 
-
 void DegreeStepper::setMicrosteppingFactor(float microsteppingFactor=1){
     stepsPerDegree = stepsPerDegree / microsteppingFactor;
 }
@@ -36,4 +35,8 @@ void DegreeStepper::moveToDegree(float absoluteDegree){
 
 void DegreeStepper::moveDegree(float relativeDegree){
     move((long) relativeDegree * stepsPerDegree);
+}
+
+long DegreeStepper::degreesToSteps(float degrees) {
+    return (long)(degrees * stepsPerDegree);
 }

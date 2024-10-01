@@ -4,7 +4,7 @@
 #include <AccelStepper.h>
 
 /// @class DegreeStepper\n
-/// Class based on AccelStepper library allowing to control a stepper motor using degrees rather than steps.
+/// Class based on AccelStepper library to allow controlling a stepper motor using degrees rather than steps.
 class DegreeStepper : public AccelStepper{
   private:
     uint8_t enPin;
@@ -44,6 +44,10 @@ class DegreeStepper : public AccelStepper{
     /// Sets the new relative target position of the stepper motor in degrees
     /// @param relativeDegree -> new relative target position in degrees
     void moveDegree(float relativeDegree);
+
+    /// Convert degrees to steps
+    /// @param degrees -> degrees position to be converted in steps
+    long degreesToSteps(float degrees);
 };
 
 #endif
