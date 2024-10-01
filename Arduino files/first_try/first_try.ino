@@ -1,28 +1,32 @@
 #include <AccelStepper.h>
 #include <MultiStepper.h>
 
+#include "DegreeStepper.h"
+
 const int dirPin = 2;
 const int stepPin = 4;
-int pos = 400;
+const int enPin = 8;
+int pos = 90;
 
-AccelStepper myStepper(AccelStepper::DRIVER, stepPin, dirPin);
+DegreeStepper degreeStepper(stepPin, dirPin, enPin);
+
+// AccelStepper myStepper(AccelStepper::DRIVER, stepPin, dirPin);
 
 void setup() {
-  pinMode(8, OUTPUT);
-  digitalWrite(8, HIGH);
-  myStepper.setCurrentPosition(0);
-  myStepper.setMaxSpeed(1000);
-  myStepper.setSpeed(300);
-  myStepper.setAcceleration(500);
-  digitalWrite(8, LOW);
+  degreeStepper.disable();
+  degreeStepper.setCurrentPositionInDegree(0);
+  degreeStepper.setMaxSpeed(1000);
+  degreeStepper.setSpeed(800)
+  degreeStepper.setAcceleration(500)
+  degreeStepper.enable();
 }
 
 void loop() {
-  pos = -pos;
-  myStepper.move(pos);
+  degreeStepper.moveToDegree(pos)
   // myStepper.runToPosition();
-  while (myStepper.distanceToGo() != 0) {
+  while (degreeStepper.distanceToGo() != 0) {
    myStepper.run();
   }
+  degreeStepper.currentPositionInDegree()
 
 }
