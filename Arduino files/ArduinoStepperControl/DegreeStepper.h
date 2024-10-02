@@ -3,31 +3,30 @@
 
 #include <AccelStepper.h>
 
-/// @class DegreeStepper\n
+/// @class DegreeStepper
 /// Class based on AccelStepper library to allow controlling a stepper motor using degrees rather than steps.
 class DegreeStepper : public AccelStepper{
   private:
     uint8_t enPin;
     float stepsPerDegree;
-
   public:
     /// StepperDegree constructor (based on TMC2208)
     /// @param stepPin -> driver step pin
     /// @param dirPin -> drive direction pin
     /// @param enPin -> driver enable pin
-    DegreeStepper(uint8_t stepPin, uint8_t dirPin, uint8_t enPin);
+    DegreeStepper(uint8_t stepPin, uint8_t directionPin, uint8_t enablePin);
 
     /// Driver enable (based on TMC2208) -> set enPin = LOW
     void enable();
 
     /// Driver disable (based on TMC2208) -> set enPin = HIGH
     void disable();
-    
+
     /// Microstepping factor is set (based on TMC2208) -> possible values are 1/2, 1/4, 1/8, 1/16
     void setMicrosteppingFactor(float microsteppingFactor);
 
     /// Return the current motor position in degrees. Positive is clockwise from the 0 position.
-    float currentPositionInDegree();
+    float returnCurrentPositionInDegree();
 
     /// Sets the current position of the motor equal the specified one. Useful
     /// for setting a zero position on a stepper after an initial hardware
@@ -45,9 +44,7 @@ class DegreeStepper : public AccelStepper{
     /// @param relativeDegree -> new relative target position in degrees
     void moveDegree(float relativeDegree);
 
-    /// Convert degrees to steps
-    /// @param degrees -> degrees position to be converted in steps
-    long degreesToSteps(float degrees);
+    float returnStepsPerDegree();
 };
 
 #endif
